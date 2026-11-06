@@ -241,11 +241,12 @@ final class ZatcaQr
             $amount = trim($amount);
         }
 
+        // Only a string can reach this point: int and float are always numeric.
         if (!is_numeric($amount)) {
             throw new InvalidFieldException(sprintf(
-                'The %s must be numeric; %s given.',
+                'The %s must be numeric; "%s" given.',
                 $label,
-                is_string($amount) ? sprintf('"%s"', $amount) : gettype($amount)
+                $amount
             ));
         }
 
